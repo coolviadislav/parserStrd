@@ -1,12 +1,13 @@
 <?php
-require('vendor/autoload.php');
+require_once "vendor/autoload.php";
 
 use Symfony\Component\DomCrawler\Crawler;
 
-$html = "https://www.strd.ru/kirpich/";
+$url = 'https://www.strd.ru/kirpich/';
 
+$html = file_get_contents($url);
 $crawler = new Crawler($html);
 
-$name = $crawler->filter('p.crumbs')->first()->text();
+$data = $crawler->filter('#page_head')->first()->text();
 
-var_dump($name);
+var_dump($data);
